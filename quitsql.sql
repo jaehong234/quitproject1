@@ -1,5 +1,6 @@
 select * from member;
 
+drop table attach10;
 drop table member;
 
 drop table item;
