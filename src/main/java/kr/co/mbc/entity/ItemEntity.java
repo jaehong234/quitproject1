@@ -1,12 +1,17 @@
 package kr.co.mbc.entity;
 
+import java.util.List;
 import java.util.Random;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,6 +44,10 @@ public class ItemEntity {
 	
 	private String createDate;
 	private String updateDate;
+	
+	@OneToMany(mappedBy = "item", cascade = CascadeType.REMOVE)
+	@JsonIgnore
+	private List<AttachEntity> attachlist;
 	
 	 public static String generateRandomString(int length) {
 	        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; // 사용할 문자 세트
