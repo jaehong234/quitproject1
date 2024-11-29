@@ -16,23 +16,23 @@
 </head>
 <body>
 <div class="container">
-<a href="/member/insert">입력</a>
+<a href="/board/insert">입력</a>
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col">아이디</th>
-      <th scope="col">이름</th>
-      <th scope="col">연락처</th>
+      <th scope="col">작성자</th>
+      <th scope="col">제목</th>
+      <th scope="col">생성일</th>
       <th scope="col">수정일</th>
     </tr>
   </thead>
   <tbody>
   <c:forEach items="${responseList}" var="dto">
     <tr>
-      <th scope="row"><a href="/member/read/${dto.userId}">${dto.userId}</a></th>
-      <td>${dto.name}</td>
-      <td>${dto.phoneNum}</td>
+      <th><a href="/board/read/${dto.id}">${dto.writer}</a></th>
+      <td>${dto.title}</td>
       <td>${dto.createDate}</td>
+      <td>${dto.updateDate}</td>
     </tr>
 </c:forEach>
   </tbody>

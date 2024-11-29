@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class MemberDTO {
+public class MemberDto {
 	
 	@NotBlank(message = "아이디는 필수입력입니다.")
 	@Size(min = 3, message = "3자리 이상입력하세요.")

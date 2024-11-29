@@ -6,4 +6,8 @@ import kr.co.mbc.entity.MemberEntity;
 
 public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
 
+	MemberEntity findByUserId(String userId);
+
+	void deleteByUserId(String userId);
+
 }

@@ -15,29 +15,45 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
+
 <div class="container">
-<a href="/member/insert">입력</a>
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">아이디</th>
-      <th scope="col">이름</th>
-      <th scope="col">연락처</th>
-      <th scope="col">수정일</th>
-    </tr>
-  </thead>
-  <tbody>
-  <c:forEach items="${responseList}" var="dto">
-    <tr>
-      <th scope="row"><a href="/member/read/${dto.userId}">${dto.userId}</a></th>
-      <td>${dto.name}</td>
-      <td>${dto.phoneNum}</td>
-      <td>${dto.createDate}</td>
-    </tr>
-</c:forEach>
-  </tbody>
-</table>
+
+<form:form method="post" action="/member/update">
+
+<div>
+	<h2>수정화면</h2>
+	<hr>
 </div>
 
+<div class="mb-3">
+	<label class="form-label"> 아이디</label> <br>
+	<input class="form-label" readonly="readonly" name="userId" value="${mres.userId}">
+</div>
+
+<div class="mb-3">
+	<label class="form-label"> 이름</label><br>
+	<input class="form-label" name="name" value="${mres.name}">
+</div>
+
+<div class="mb-3">
+	<label class="form-label"> 연락처</label><br>
+	<input class="form-label" name="phoneNum" value="${mres.phoneNum}">
+</div>
+
+<div class="mb-3">
+	<label class="form-label"> 이메일</label><br>
+	<input class="form-label" type="email" name="email" value="${mres.email}">
+</div>
+
+<div class="mb-3">
+	<label class="form-label"> 주소</label><br>
+	<input class="form-label" name="address" value="${mres.address}">
+</div>
+
+<button>수정완료</button>
+
+</form:form>
+
+</div>
 </body>
 </html>

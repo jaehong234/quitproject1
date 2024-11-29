@@ -27,7 +27,8 @@
 
 <div class="mb-3">
 	<label class="form-label"> 아이디</label> <br>
-	<input class="form-label" name="userId"><button>중복검사</button>
+	<input class="form-label" name="userId"><button type="button" id="insert_checkId_btn">중복검사</button>
+	<div id="checkId_message"></div>
 	<form:errors path="userId"></form:errors>
 </div>
 
@@ -73,7 +74,37 @@
 <button>회원가입</button>
 
 </form:form>
+<button id="insert_list_btn">목록</button>
 
 </div>
+
+
+<script type="text/javascript">
+
+$("#insert_checkId_btn").click(function(){
+	$.ajax({
+		
+		url : "/member/checkId",
+		type : "post",
+		dataType : "text",
+		data : {
+			userId : $("input[name='userId']").val()
+		},
+		success : function(result){
+			if(result=="ok") {
+				$("#checkId_message").html("<div>사용가능합니다.</div>");
+			}else{
+			$("#checkId_message").html("<div>사용불가합니다.</div>");
+			}
+		}
+		
+	});
+});
+
+$("#insert_list_btn").click(function(){
+	location.href= "/member/list";
+});
+
+</script>
 </body>
 </html>

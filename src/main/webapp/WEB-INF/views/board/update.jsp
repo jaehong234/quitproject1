@@ -15,29 +15,36 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
+
 <div class="container">
-<a href="/member/insert">입력</a>
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">아이디</th>
-      <th scope="col">이름</th>
-      <th scope="col">연락처</th>
-      <th scope="col">수정일</th>
-    </tr>
-  </thead>
-  <tbody>
-  <c:forEach items="${responseList}" var="dto">
-    <tr>
-      <th scope="row"><a href="/member/read/${dto.userId}">${dto.userId}</a></th>
-      <td>${dto.name}</td>
-      <td>${dto.phoneNum}</td>
-      <td>${dto.createDate}</td>
-    </tr>
-</c:forEach>
-  </tbody>
-</table>
+
+<form:form method="post" action="/board/update">
+
+<div>
+	<h2>수정화면</h2>
+	<hr>
 </div>
 
+<div class="mb-3">
+	<label class="form-label"> 작성자</label> <br>
+	<input class="form-label" readonly="readonly" name="writer" value="${boardResponse.writer}">
+</div>
+
+<div class="mb-3">
+	<label class="form-label"> 제목</label><br>
+	<input class="form-label" name="title" value="${boardResponse.title}">
+</div>
+
+<div class="mb-3">
+	<label class="form-label"> 내용</label><br>
+	<input class="form-label" name="content" value="${boardResponse.content}">
+</div>
+
+<input name="id" value="${boardResponse.id}" type="hidden">
+<button>수정완료</button>
+
+</form:form>
+
+</div>
 </body>
 </html>

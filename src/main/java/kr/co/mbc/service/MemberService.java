@@ -7,8 +7,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import kr.co.mbc.dto.MemberDTO;
+import kr.co.mbc.dto.MemberDto;
 import kr.co.mbc.dto.MemberResponse;
 import kr.co.mbc.entity.MemberEntity;
 import kr.co.mbc.repository.MemberRepository;
@@ -32,40 +33,66 @@ public class MemberService {
 	}
 	
 	
-	public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
+	public static MemberEntity toMemberEntity(MemberDto memberDto) {
 		Date d = new Date(System.currentTimeMillis());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		String nallja = sdf.format(d);
 		
-		MemberEntity entity = MemberEntity.builder().userId(memberDTO.getUserId())
-				.pass(memberDTO.getPass()).name(memberDTO.getName()).phoneNum(memberDTO.getPhoneNum())
-				.email(memberDTO.getEmail()).address(memberDTO.getAddress())
-				.gender(memberDTO.getGender()).createDate(nallja).updateDate(nallja)
+		MemberEntity entity = MemberEntity.builder().userId(memberDto.getUserId())
+				.pass(memberDto.getPass()).name(memberDto.getName()).phoneNum(memberDto.getPhoneNum())
+				.email(memberDto.getEmail()).address(memberDto.getAddress())
+				.gender(memberDto.getGender()).createDate(nallja).updateDate(nallja)
 				.build();
 		
 		return entity;
 	}
 
 
-	public void save(MemberDTO memberDTO) {
-		MemberEntity entity = toMemberEntity(memberDTO);
+	public void save(MemberEntity memberEntity) {
+		
+		memberRepository.save(memberEntity);
+		
+	}
+
+
+	public List<MemberEntity> findAll() {
+		List<MemberEntity> entityList = memberRepository.findAll();
+		
+		return entityList;
+	}
+
+
+	public MemberEntity findByUserId(String userId) {
+		
+		MemberEntity memberEntity = memberRepository.findByUserId(userId);
+		
+		return memberEntity;
+	}
+
+
+	public void update(MemberDto memberDto) {
+		
+		MemberEntity entity = memberRepository.findByUserId(memberDto.getUserId());
+		
+		Date d = new Date(System.currentTimeMillis());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		String naljja = sdf.format(d);
+		
+		entity.setName(memberDto.getName());
+		entity.setPhoneNum(memberDto.getPhoneNum());
+		entity.setEmail(memberDto.getEmail());
+		entity.setAddress(memberDto.getAddress());
+		entity.setUpdateDate(naljja);
+		
 		
 		memberRepository.save(entity);
 		
 	}
 
-
-	public List<MemberResponse> findAll() {
-		List<MemberEntity> entityList = memberRepository.findAll();
+	@Transactional
+	public void deleteByUserId(String userId) {
+		memberRepository.deleteByUserId(userId);
 		
-		List<MemberResponse> responseList = new ArrayList<MemberResponse>();
-		
-		for(MemberEntity entity : entityList) {
-			MemberResponse memberResponse = toMemberResponse(entity);
-			responseList.add(memberResponse);
-		}
-		
-		return responseList;
 	}
 	
 	
