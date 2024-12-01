@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import jakarta.validation.Valid;
 import kr.co.mbc.dto.ItemDto;
 import kr.co.mbc.dto.ItemResponse;
 import kr.co.mbc.service.ItemService;
+import kr.co.mbc.utils.UploadFileUtils;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -26,19 +29,19 @@ public class ItemController {
 
 	@PostMapping("/delete")
 	public String delete(String itemId) {
-		
+
 		System.out.println(itemId);
-		
+
 		itemService.deleteByItemId(itemId);
-		
+
 		return "redirect:/item/list";
 	}
-	
+
 	@PostMapping("/update")
 	public String update(ItemDto itemDto) {
-		
+
 		itemService.update(itemDto);
-		
+
 		ItemResponse itemResponse = itemService.findByItemName(itemDto.getItemName());
 
 		return "redirect:/item/read/" + itemResponse.getItemId();
@@ -74,18 +77,25 @@ public class ItemController {
 	}
 
 	@PostMapping("/insert")
-	public String insert(@Valid @ModelAttribute("itemDto") ItemDto itemDto, BindingResult bindingResult) {
+	public String insert(@Valid @ModelAttribute("itemDto") ItemDto itemDto, BindingResult bindingResult,
+			MultipartHttpServletRequest mRequest) {
 
 		if (bindingResult.hasErrors()) {
 
 			return "redirect:/item/insert";
 		}
 
+		MultipartFile file = mRequest.getFile("quitfile");
+
+		String fullFilename = UploadFileUtils.uploadFile(file);
+
+		System.out.println(fullFilename);
+		
+		itemDto.setItemPrice(fullFilename);
+		
 		itemService.save(itemDto);
 
-		ItemResponse itemResponse = itemService.findByItemName(itemDto.getItemName());
-
-		return "redirect:/item/read/" + itemResponse.getItemId();
+		return "redirect:/item/list";
 	}
 
 	@GetMapping("/insert")
