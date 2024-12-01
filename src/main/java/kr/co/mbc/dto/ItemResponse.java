@@ -1,5 +1,8 @@
 package kr.co.mbc.dto;
 
+import java.util.List;
+
+import kr.co.mbc.entity.AttachEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +23,8 @@ public class ItemResponse {
 	private String itemPrice;
 	
 	private String itemInfo;
+	
+	private List<AttachEntity> attachList;
 	
 	private String createDate;
 	private String updateDate;

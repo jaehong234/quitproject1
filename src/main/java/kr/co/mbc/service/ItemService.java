@@ -1,6 +1,5 @@
 package kr.co.mbc.service;
 
-import java.lang.module.ModuleDescriptor.Builder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,10 +40,9 @@ public class ItemService {
 	
 	public static ItemResponse toItemResponse(ItemEntity itemEntity) {
 		
-		
-		
 		ItemResponse itemResponse = ItemResponse.builder().itemId(itemEntity.getItemId()).itemName(itemEntity.getItemName()).itemPrice(itemEntity.getItemPrice())
-				.itemInfo(itemEntity.getItemInfo()).createDate(itemEntity.getCreateDate()).updateDate(itemEntity.getUpdateDate()).build();
+				.itemInfo(itemEntity.getItemInfo()).createDate(itemEntity.getCreateDate()).updateDate(itemEntity.getUpdateDate())
+				.attachList(itemEntity.getAttachlist()).build();
 		
 		return itemResponse;
 	}
@@ -54,20 +52,19 @@ public class ItemService {
 	@Transactional
 	public void save(ItemDto itemDto) {
 		
-		String filename = itemDto.getFilename();
-		
 		ItemEntity entity = ItemService.toItemEntity(itemDto);
+		String filename = itemDto.getFilename();
 		
 		Date d = new Date(System.currentTimeMillis());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		String naljja = sdf.format(d);
 		
 		AttachEntity attachEntity = AttachEntity.builder().filename(filename)
-				.createDate(naljja).updateDate(naljja).build();
+				.createDate(naljja).updateDate(naljja).item(entity).build();
 		
-		attachRepository.save(attachEntity);
 		itemRepository.save(entity);
 		
+		attachRepository.save(attachEntity);
 		
 	}
 

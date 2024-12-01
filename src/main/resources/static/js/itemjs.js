@@ -1,9 +1,27 @@
 $(function() {
 	
-	$("#item_insert_list_btn").	click(function(){
+	//read
+	$("#item_delete_btn").click(function(){
+		let isOk = confirm("정말 삭제하시겠습니까?");
+		if(isOk) {
+			$("#hidden_form").submit();
+		}
+	});
+
+	$("#item_update_btn").click(function(){
+		let itemId = $("#hidden_itemId").val();
+		location.href = "/item/update/"+itemId;
+	});
+
+	$("#item_list_btn").click(function(){
 		location.href = "/item/list";
 	});
 	
+	
+	//insert
+	$("#item_insert_list_btn").	click(function(){
+		location.href = "/item/list";
+	});
 	
 	
 	$("input[type='file']").change(function(event){
