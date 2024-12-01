@@ -1,5 +1,6 @@
 package kr.co.mbc.service;
 
+import java.lang.module.ModuleDescriptor.Builder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import kr.co.mbc.dto.ItemDto;
 import kr.co.mbc.dto.ItemResponse;
+import kr.co.mbc.entity.AttachEntity;
 import kr.co.mbc.entity.ItemEntity;
+import kr.co.mbc.repository.AttachRepository;
 import kr.co.mbc.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +22,8 @@ import lombok.RequiredArgsConstructor;
 public class ItemService {
 
 	private final ItemRepository itemRepository;
+	
+	private final AttachRepository attachRepository;
 	
 	public static ItemEntity toItemEntity(ItemDto itemDto) {
 		
@@ -44,11 +49,25 @@ public class ItemService {
 		return itemResponse;
 	}
 	
+	
+	
+	@Transactional
 	public void save(ItemDto itemDto) {
+		
+		String filename = itemDto.getFilename();
 		
 		ItemEntity entity = ItemService.toItemEntity(itemDto);
 		
+		Date d = new Date(System.currentTimeMillis());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		String naljja = sdf.format(d);
+		
+		AttachEntity attachEntity = AttachEntity.builder().filename(filename)
+				.createDate(naljja).updateDate(naljja).build();
+		
+		attachRepository.save(attachEntity);
 		itemRepository.save(entity);
+		
 		
 	}
 

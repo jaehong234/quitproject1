@@ -23,4 +23,6 @@ public class ItemDto {
 	@NotBlank(message = "상품설명은 필수 입력입니다.")
 	private String itemInfo;
 
+	private String filename;
+	
 }
