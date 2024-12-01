@@ -37,5 +37,13 @@ public class AttachEntity {
 	@JsonIgnore
 	@JoinColumn(nullable = false)
 	private ItemEntity item;
+
+	@Override
+	public String toString() {
+		return "AttachEntity [id=" + id + ", filename=" + filename + ", createDate=" + createDate + ", updateDate="
+				+ updateDate + ", item=" + item + "]";
+	}
+	
+	
 	
 }

@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import jakarta.validation.Valid;
 import kr.co.mbc.dto.ItemDto;
 import kr.co.mbc.dto.ItemResponse;
+import kr.co.mbc.entity.AttachEntity;
 import kr.co.mbc.service.ItemService;
 import kr.co.mbc.utils.UploadFileUtils;
 import lombok.RequiredArgsConstructor;
@@ -71,6 +72,15 @@ public class ItemController {
 
 		ItemResponse itemResponse = itemService.findByItemId(itemId);
 
+		List<AttachEntity> attachList = itemResponse.getAttachList();
+
+		for(AttachEntity attachEntity : attachList) {
+			
+			String filename = attachEntity.getFilename();
+			model.addAttribute("filename", filename);
+		}
+		
+
 		model.addAttribute("itemResponse", itemResponse);
 
 		return "/item/read";
@@ -90,9 +100,9 @@ public class ItemController {
 		String fullFilename = UploadFileUtils.uploadFile(file);
 
 		System.out.println(fullFilename);
-		
-		itemDto.setItemPrice(fullFilename);
-		
+
+		itemDto.setFilename(fullFilename);
+
 		itemService.save(itemDto);
 
 		return "redirect:/item/list";
