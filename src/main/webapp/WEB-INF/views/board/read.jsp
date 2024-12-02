@@ -77,13 +77,7 @@ $("#reply_list_tag").on("click", "button[class='reply_delete_btn']", function(){
 		success : function(result){
 			alert(result);
 		}
-		
-		
-		
 	});
-	
-	
-	
 	
 });
 
@@ -110,9 +104,7 @@ function getReplyList() {
 $("#reply_btn").click(function() {
 	
 	let $content = $("input[name='replyContent']").val();
-	
 	let $readId = $("input[type='hidden']").val();
-	
 	
 	$.ajax({
 

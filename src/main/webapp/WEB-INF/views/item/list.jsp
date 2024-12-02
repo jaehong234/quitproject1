@@ -32,12 +32,8 @@
 
 	</div>
 	
-	
+<script src="/js/itemjs.js" type="text/javascript"></script>
 <script type="text/javascript">
-$("button").click(function(){
-	location.href="/item/insert"
-});
-
 </script>
 </body>
 </html>

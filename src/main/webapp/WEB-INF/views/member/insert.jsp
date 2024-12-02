@@ -21,13 +21,13 @@
 
 <div class="mb-3">
 	<label class="form-label"> 비밀번호</label><br>
-	<input class="form-label" type="password" name="pass">
+	<input id="member_isnert_pass" class="form-label" type="password" name="pass">
 	<form:errors path="pass"></form:errors>
 </div>
 
 <div class="mb-3">
 	<label class="form-label"> 비밀번호확인</label><br>
-	<input class="form-label" type="password" name="pass2">
+	<input id="member_isnert_pass2" class="form-label" type="password" name="pass2">
 	<form:errors path="pass2"></form:errors>
 </div>
 
@@ -65,33 +65,8 @@
 
 </div>
 
-
+<script src="/js/memberjs.js" type="text/javascript"></script>
 <script type="text/javascript">
-
-$("#insert_checkId_btn").click(function(){
-	$.ajax({
-		
-		url : "/member/checkId",
-		type : "post",
-		dataType : "text",
-		data : {
-			userId : $("input[name='userId']").val()
-		},
-		success : function(result){
-			if(result=="ok") {
-				$("#checkId_message").html("<div>사용가능합니다.</div>");
-			}else{
-			$("#checkId_message").html("<div>사용불가합니다.</div>");
-			}
-		}
-		
-	});
-});
-
-$("#insert_list_btn").click(function(){
-	location.href= "/member/list";
-});
-
 </script>
 </body>
 </html>
