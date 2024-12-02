@@ -20,3 +20,5 @@ drop table reply;
 delete from reply;
 
 select * from reply;
+
+select * from attach_entity;

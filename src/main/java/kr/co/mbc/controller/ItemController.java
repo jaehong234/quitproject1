@@ -1,7 +1,17 @@
 package kr.co.mbc.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -79,13 +89,53 @@ public class ItemController {
 			String filename = attachEntity.getFilename();
 			model.addAttribute("filename", filename);
 		}
-		
 
 		model.addAttribute("itemResponse", itemResponse);
 
 		return "/item/read";
 	}
 
+	
+	@GetMapping("/download")
+	public ResponseEntity<byte[]> download(String fullFilename) {
+		ResponseEntity<byte[]> entity = null;
+
+		InputStream in = null;
+		String path = Paths.get("src/main/resources/static/upload").toAbsolutePath().toString();
+
+		File target = new File(path, fullFilename);
+
+		try {
+			in = new FileInputStream(target);
+			HttpHeaders headers = new HttpHeaders();
+
+			String orgname = UploadFileUtils.getOrgname(fullFilename);
+
+			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM); 
+						// 모르는 미디어타입을 정의할 때 사용함.
+			String val = "attachment;filename=\"" + new String(orgname.getBytes("UTF-8"), "ISO-8859-1") + "\"";
+																	// 인코딩-> UTF-8 -> ISO-8859-1 로 변환
+			headers.add("Content-Disposition", val); // 위에 설정한 속성 val을 headers에 추가
+
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.OK); 
+					// (실제내용(무조건 byte스트림으로 해야함.), headers, 상태코드)
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST); 
+							// 상태코드만 뜨게 해줌
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return entity;
+	}
+	
 	@PostMapping("/insert")
 	public String insert(@Valid @ModelAttribute("itemDto") ItemDto itemDto, BindingResult bindingResult,
 			MultipartHttpServletRequest mRequest) {

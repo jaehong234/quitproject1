@@ -10,7 +10,7 @@
 	<div class="container" style="display: flex; align-items: center;">
 		<hr>
 		<div style="flex: 0 0 auto; margin-right: 20px;">
-			<img src="/upload/${filename}">
+			<img src="/item/download?fullFilename=${filename}">
 		</div>
 		
 		<div style="flex: 1;">
