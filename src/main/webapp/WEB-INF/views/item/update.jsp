@@ -24,8 +24,6 @@
     <button type="submit" class="btn btn-primary">아이템 수정</button>
  
 </form>
-
-
 </div>
 </body>
 </html>

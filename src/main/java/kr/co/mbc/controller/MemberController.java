@@ -110,9 +110,9 @@ public class MemberController {
 			return "/member/insert";
 		}
 		
-//		if(memberDTO.getPass().equals(memberDTO.getPass2())) {
-//			return "/member/insert";
-//		}
+		if(memberDto.getPass().equals(memberDto.getPass2())) {
+			return "/member/insert";
+		}
 		
 		MemberEntity memberEntity = MemberService.toMemberEntity(memberDto);
 		

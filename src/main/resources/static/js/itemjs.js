@@ -1,5 +1,11 @@
 $(function() {
 	
+	//list
+	$("button").click(function(){
+		location.href="/item/insert"
+	});
+
+	
 	//read
 	$("#item_delete_btn").click(function(){
 		let isOk = confirm("정말 삭제하시겠습니까?");

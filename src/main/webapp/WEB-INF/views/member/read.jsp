@@ -48,15 +48,8 @@
 
 
 
-
+<script src="/js/memberjs.js" type="text/javascript"></script>
 <script type="text/javascript">
-$("#member_delete_btn").click(function(){
-	let isOk = confirm("정말 삭제할꺼야?");
-	
-	if(isOk){
-		$("form").submit();
-	}
-});
 </script>
 </body>
 </html>

@@ -33,9 +33,8 @@
             회원관리
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/member/list">회원목록</a></li>
-            <li><a class="dropdown-item" href="/member/insert">회원등록</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="/member/list">회원 목록</a></li>
+            <li><a class="dropdown-item" href="/member/insert">회원 등록</a></li>
           </ul>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -44,7 +43,6 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/board/insert">게시글 등록</a></li>
             <li><a class="dropdown-item" href="/board/list">게시글 리스트</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
           <li class="nav-item dropdown">
@@ -54,7 +52,6 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/item/insert">아이템 등록</a></li>
             <li><a class="dropdown-item" href="/item/list">아이템 리스트</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
       </ul>

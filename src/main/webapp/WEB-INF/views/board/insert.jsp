@@ -26,11 +26,8 @@
  
 </form:form>
 
+<script src="/js/boardjs.js" type="text/javascript"></script>
 <script type="text/javascript">
-$("#board_insert_list_btn").click(function(){
-	location.href = "/board/list";
-});
-
 </script>
 </div>
 </body>

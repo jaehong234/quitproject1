@@ -1,8 +1,5 @@
 console.log("test2.js~~~~");
 
-
-
-
 function replyListRender(obj){
 	
 	let tag =``;
