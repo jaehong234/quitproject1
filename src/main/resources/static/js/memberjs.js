@@ -31,7 +31,8 @@ $(function(){
 		});
 	});
 
-	$("#insert_list_btn").click(function(){
+	$("#insert_list_btn").click(function(event){
+		event.preventDefault();
 		location.href= "/member/list";
 	});
 	

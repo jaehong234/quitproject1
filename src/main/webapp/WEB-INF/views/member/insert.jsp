@@ -26,7 +26,7 @@
 </div>
 
 <div class="mb-3">
-	<label class="form-label"> 비밀번호확인</label><br>
+	<label class="form-label"> 비밀번호 확인</label><br>
 	<input id="member_isnert_pass2" class="form-label" type="password" name="pass2">
 	<form:errors path="pass2"></form:errors>
 </div>
@@ -60,8 +60,8 @@
 
 <button>회원가입</button>
 
-</form:form>
 <button id="insert_list_btn">목록</button>
+</form:form>
 
 </div>
 

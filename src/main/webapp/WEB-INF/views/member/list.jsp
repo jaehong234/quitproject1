@@ -4,7 +4,12 @@
 <%@ include file="../part/header.jsp" %>
 
 <div class="container">
-<a href="/member/insert">입력</a>
+
+<hr>
+<h2>회원 리스트</h2>
+<hr>
+
+
 <table class="table table-bordered">
   <thead>
     <tr>

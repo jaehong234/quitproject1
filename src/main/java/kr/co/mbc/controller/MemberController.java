@@ -107,10 +107,12 @@ public class MemberController {
 			, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors()) {
+			System.out.println("에러가 떴음");
 			return "/member/insert";
 		}
 		
-		if(memberDto.getPass().equals(memberDto.getPass2())) {
+		if(!memberDto.getPass().equals(memberDto.getPass2())) {
+			System.out.println("비밀번호가 같지 않아서 에러가 뜸");
 			return "/member/insert";
 		}
 		

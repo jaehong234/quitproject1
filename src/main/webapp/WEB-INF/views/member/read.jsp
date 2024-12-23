@@ -3,6 +3,11 @@
 <%@ include file="../part/header.jsp" %>
 
 	<div class="container">
+	
+	<hr>
+	<h2>회원정보 자세히보기</h2>
+	<hr>
+	
 		<table class="table table-bordered">
 			<tr>
 				<td>userId</td>
@@ -35,9 +40,9 @@
 			</tr>
 
 		</table>
+		<form action="/member/delete" method="post">
 		<button><a href="/member/list">목록</a></button>
 		<button><a href="/member/update/${memberResponse.userId}">수정</a></button>
-		<form action="/member/delete" method="post">
 		<button type="button" id="member_delete_btn">삭제</button>
 		<input type="hidden" value="${memberResponse.userId}" name="userId">
 		</form>
