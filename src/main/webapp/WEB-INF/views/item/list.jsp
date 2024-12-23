@@ -28,7 +28,7 @@
 			</tbody>
 		</table>
 		
-		<button class="btn btn-primary" type="button">상품등록</button>
+		<button id="item_list_insert_btn" class="btn btn-primary" type="button">상품등록</button>
 
 	</div>
 	

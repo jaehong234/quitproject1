@@ -1,7 +1,14 @@
 $(function() {
 	
+	//update
+	$("#item_update_out_btn").click(function(){
+		let hiddenVal= $("input[type='hidden']").val();
+		location.href = "/item/read/" + hiddenVal;		
+		
+	});
+	
 	//list
-	$("button").click(function(){
+	$("#item_list_insert_btn").click(function(){
 		location.href="/item/insert"
 	});
 
@@ -19,7 +26,7 @@ $(function() {
 		location.href = "/item/update/"+itemId;
 	});
 
-	$("#item_list_btn").click(function(){
+	$("#item_list_btn").click(function(event){
 		location.href = "/item/list";
 	});
 	

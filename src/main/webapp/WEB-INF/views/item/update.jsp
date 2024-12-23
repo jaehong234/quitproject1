@@ -22,8 +22,11 @@
     </div>
   
     <button type="submit" class="btn btn-primary">아이템 수정</button>
+    <button id="item_update_out_btn" type="button" class="btn btn-primary">나가기</button>
+    <input type="hidden" value="${itemResponse.itemId}" name="itemId">
  
 </form>
 </div>
+<script src="/js/itemjs.js" type="text/javascript"></script>
 </body>
 </html>

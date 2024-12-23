@@ -34,10 +34,9 @@
 				<div class="card-body">아이템 수정일 : ${itemResponse.updateDate}</div>
 			</div>
 		
-			<button class="btn btn-primary" id="item_list_btn">목록</button>
-			<button class="btn btn-primary" id="item_update_btn">수정</button>
-		
 			<form id="hidden_form" method="post" action="/item/delete">
+				<button type="button" class="btn btn-primary" id="item_list_btn">목록</button>
+				<button type="button" class="btn btn-primary" id="item_update_btn">수정</button>
 				<button type="button" class="btn btn-primary" id="item_delete_btn">삭제</button>
 				<input id="hidden_itemId" type="hidden" name="itemId" value="${itemResponse.itemId}">
 			</form>
