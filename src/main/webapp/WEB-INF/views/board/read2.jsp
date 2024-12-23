@@ -4,6 +4,11 @@
 	
 	<div class="container">
 		<input type="hidden" name="id" value="${boardResponse.id}">
+		
+		<hr>
+		<h2>게시글 상세보기</h2>
+		<hr>
+		
 		<table class="table table-bordered">
 			<tr>
 				<td>제목</td>
@@ -29,6 +34,7 @@
 		<button type="button" id="board_delete_btn">삭제</button>
 
 		<h2>댓글</h2>
+		<hr>
 		<div id="reply_tag">
 			
 			<div>
@@ -42,11 +48,8 @@
 				</table>
 			</div>
 			
-
 		</div>
 	</div>
-	
-	
 	
 <script src="/js/test2.js" type="text/javascript"></script>
 </body>

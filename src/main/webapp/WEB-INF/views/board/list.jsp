@@ -3,7 +3,11 @@
     
 <%@ include file="../part/header.jsp" %>
 <div class="container">
-<a href="/board/insert">입력</a>
+
+<hr>
+<h2>게시글 목록</h2>
+<hr>
+
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -16,7 +20,7 @@
   <tbody>
   <c:forEach items="${responseList}" var="dto">
     <tr>
-      <th><a href="/board/read/${dto.id}">${dto.writer}</a></th>
+      <th><a href="/board/read2/${dto.id}">${dto.writer}</a></th>
       <td>${dto.title}</td>
       <td>${dto.createDate}</td>
       <td>${dto.updateDate}</td>

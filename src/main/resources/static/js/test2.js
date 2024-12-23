@@ -6,6 +6,7 @@ function replyListRender(obj){
 	
 	for(let el of obj) {
 		tag +=`
+		
 			<tr>
 				<th>댓글아이디</th>
 				<td>${el.id}</td>

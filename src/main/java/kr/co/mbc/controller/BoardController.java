@@ -59,7 +59,7 @@ public class BoardController {
 		
 		boardService.update(boardEntity);
 		
-		return "redirect:/board/read/"+ boardDto.getId();
+		return "redirect:/board/read2/"+ boardDto.getId();
 	}
 	
 	@GetMapping("update/{id}")
@@ -117,7 +117,7 @@ public class BoardController {
 		
 		boardService.save(boardEntity);
 		
-		return "redirect:/board/read/"+boardEntity.getId();
+		return "redirect:/board/read2/"+boardEntity.getId();
 	}
 	
 	@GetMapping("/insert")

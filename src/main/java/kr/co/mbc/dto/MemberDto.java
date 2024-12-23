@@ -23,8 +23,6 @@ public class MemberDto {
 	@Size(min = 5, max = 15, message = "비밀번호는 5~15사이로 입력하세요.")
 	private String pass; // pw
 	
-	@NotBlank(message = "비밀번호는 필수입력입니다.")
-	@Size(min = 5, max = 15, message = "비밀번호는 5~15사이로 입력하세요.")
 	private String pass2; // pw 확인
 	
 	@NotBlank(message = "이름는 필수입력입니다.")
